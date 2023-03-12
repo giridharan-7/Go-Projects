@@ -28,7 +28,7 @@ func getStudents(w http.ResponseWriter, r *http.Request){
 	json.NewEncoder(w).Encode(students)
 }
 
-func deleteMovie(w http.ResponseWriter, r *http.Request){
+func deleteStudent(w http.ResponseWriter, r *http.Request){
 	w.Header().Set("Content-type", "application/json")
 	params := mux.Vars(r)
 	for index, item := range students{
@@ -86,7 +86,7 @@ func main(){
 	r.HandleFunc("/students/{id}",getStudent).Methods("GET")
 	r.HandleFunc("/students", createStudent).Methods("POST")
 	r.HandleFunc("/students/{id}", updateStudent).Methods("PUT")
-	r.HandleFunc("/movies/{id}", deleteMovie).Methods("DELETE")
+	r.HandleFunc("/movies/{id}", deleteStudent).Methods("DELETE")
 
 	fmt.Printf("Starting the server at the port 8000\n")
 	log.Fatal(http.ListenAndServe(":8000",r))
